@@ -1,0 +1,75 @@
+@import "mq";
+@import "fonts";
+@import "palette";
+// Uncomment for embeds
+@import "embed";
+// Uncomment for full screen (including immersive article main media)
+//@import "fullscreen";
+.element-atom,
+.interactive-atom {
+    margin: 0 !important;
+
+}
+.interactive-wrapper{
+    background-color: white;
+
+    h2 {
+        @include fs-bodyHeading(2);
+    }
+
+    .gv-subhead {
+        @include fs-bodyCopy(1);
+        font-weight: normal;
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .gv-progress-marker {
+        @include fs-textSans(1);
+    }
+    .gv-bars-wrapper {
+        width: 100%;
+        clear:both;
+        float: right;
+        margin-bottom: 1px;
+    }
+
+    .gv-answer {
+        @include fs-bodyHeading(2);
+        font-weight: 700;
+    }
+
+    .timestamp {
+        color: $neutral-46;
+    }
+
+    .gv-label {
+        @include fs-textSans(2);
+        display: inline-block;
+margin-top: 1px;
+color: white;
+padding-left: 3px;
+margin-top: 3px;
+height: 100%;
+    }
+
+    .gv-label.gv-no {
+        float: right;
+        text-align: right;
+        margin-top: 3px;
+        padding-right: 3px;
+    }
+
+    .gv-bar {
+        height: 50px;
+        width: 50%;
+        float: left;
+        margin-bottom: 10px;
+        &.gv-yes{
+            background-color: $news-red;
+        }
+        &.gv-no{
+            background-color:$neutral-46;
+        }
+    }
+}

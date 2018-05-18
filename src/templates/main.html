@@ -1,0 +1,12 @@
+<div class="interactive-wrapper">
+    {{#.}}
+    <h2 class="gv-header">Irish abortion referendum May 2018</h2>
+    <div class="gv-subhead">Do you approve of the proposal to amend the constitution? The amended text would read: “Provision may be made by law for the regulation of termination of pregnancy”</div>
+    <div class="gv-progress-marker">With {{constituenciesDeclared}} of 40 constituencies declared <span class="timestamp">at {{timestamp}}</span></div>
+    <div class="gv-bars-wrapper">
+    <div class="gv-bar gv-yes" style="width:{{votes_in_favour_percent}}%"><div class="gv-label gv-yes"><div class="gv-answer">Yes</div> {{votes_in_favour_percent}}%</div></div><div class="gv-bar gv-no" style="width:{{votes_against_percent}}%">        <div class="gv-label gv-no"><div class="gv-answer">No</div>{{votes_against_percent}}%</div>
+</div>
+</div>
+    <div class="gv-halfway-marker"></div>
+    {{/.}}
+</div>
