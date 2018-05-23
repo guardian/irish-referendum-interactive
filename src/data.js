@@ -1,11 +1,21 @@
-import templateHTML from "./src/templates/main.html!text"
 import axios from 'axios'
-import xmlparse from 'pixl-xml'
 import fs from 'fs'
-import mustache from 'mustache'
-import mkdirp from 'mkdirp'
+import xmlparse from 'pixl-xml'
+import aws from 'aws-sdk'
+import config from './../config.json'
 
-mkdirp.sync('./.build/static')
+var s3 = new aws.S3();
+
+console.log(config);
+console.log('atoms/' + config.path + '/static/results.json')
+
+var s3params = {
+    Bucket: "gdn-cdn",
+    Key: 'atoms/' + config.path + '/static/results.json',
+    ACL: "public-read",
+    ContentType: "application/json",
+    CacheControl: "max-age=60"
+}
 
 //TEST
 var url = 'https://gdn-cdn.s3.amazonaws.com/testing/2018/05/irish-referendum-test/results-feed.xml'
@@ -17,7 +27,7 @@ var nationalresult;
 var timestamp = new Date().toLocaleTimeString([],{timeZone: 'Europe/Dublin', hour: '2-digit', minute: '2-digit'})
 
 
-export async function render() {
+export async function data() {
 
     var resultxml = (await (axios.get(url))).data;
     var results = xmlparse.parse(resultxml);
@@ -27,8 +37,8 @@ export async function render() {
     });
     nationalresult.constituenciesDeclared = countOfDeclared.length;
     nationalresult.timestamp = timestamp;
-    fs.writeFileSync('./.build/static/results.json',JSON.stringify(nationalresult));
-    var outputhtml = mustache.render(templateHTML, nationalresult);
-    return outputhtml;
-
+    s3params.Body = JSON.stringify(nationalresult);
+    s3.putObject(s3params, function(err){
+        if (err) console.log(err);
+    })
 }
