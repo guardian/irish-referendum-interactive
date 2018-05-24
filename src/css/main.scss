@@ -13,6 +13,25 @@
 .interactive-wrapper{
     background-color: white;
 
+    .gv-halfway-wrapper {
+        position: relative;
+    }
+
+    .gv-halfway-marker {
+        position:absolute;
+        height: 10px;
+        width: 1px;
+        background-color: black;
+        bottom: 15px;
+        left:calc(50% - 1px);
+    }
+
+    .gv-halfway-label {
+        left: calc(50% - 12px);
+        position: relative;
+        @include fs-data(1);
+    }
+
     h2 {
         @include fs-bodyHeading(2);
     }

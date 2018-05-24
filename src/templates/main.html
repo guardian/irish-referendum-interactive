@@ -1,12 +1,29 @@
 <div class="interactive-wrapper">
     {{#.}}
     <h2 class="gv-header">Irish abortion referendum May 2018</h2>
-    <div class="gv-subhead">Do you approve of the proposal to amend the constitution? The amended text would read: “Provision may be made by law for the regulation of termination of pregnancy”</div>
-    <div class="gv-progress-marker">With <span class="gv-declared">{{constituenciesDeclared}}</span> of 40 constituencies declared <span class="gv-timestamp">at {{timestamp}}</span></div>
+    <div class="gv-subhead">Do you approve of the proposal to amend the constitution? The amended text would read: “Provision may be made by law
+        for the regulation of termination of pregnancy”</div>
+    <div class="gv-progress-marker">With
+        <span class="gv-declared">{{constituenciesDeclared}}</span> of 40 constituencies declared
+        <span class="gv-timestamp">at {{timestamp}}</span>
+    </div>
     <div class="gv-bars-wrapper">
-    <div class="gv-bar gv-yes" style="width:{{votes_in_favour_percent}}%"><div class="gv-label gv-yes"><div class="gv-answer">Yes</div> <span class="gv-answer-value gv-yes">{{votes_in_favour_percent}}%</span></div></div><div class="gv-bar gv-no" style="width:{{votes_against_percent}}%">        <div class="gv-label gv-no"><div class="gv-answer">No</div><span class="gv-answer-value gv-no">{{votes_against_percent}}%</span></div>
-</div>
-</div>
-    <div class="gv-halfway-marker"></div>
+        <div class="gv-bar gv-yes" style="width:{{votes_in_favour_percent}}%">
+            <div class="gv-label gv-yes">
+                <div class="gv-answer">Yes</div>
+                <span class="gv-answer-value gv-yes">{{votes_in_favour_percent}}%</span>
+            </div>
+        </div>
+        <div class="gv-bar gv-no" style="width:{{votes_against_percent}}%">
+            <div class="gv-label gv-no">
+                <div class="gv-answer">No</div>
+                <span class="gv-answer-value gv-no">{{votes_against_percent}}%</span>
+            </div>
+        </div>
+    </div>
+    <div class="gv-halfway-wrapper">
+        <div class="gv-halfway-marker"></div>
+        <div class="gv-halfway-label">50%</div>
+    </div>
     {{/.}}
 </div>

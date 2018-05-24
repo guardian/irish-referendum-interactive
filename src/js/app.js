@@ -13,12 +13,16 @@ var progress = document.querySelector('.gv-declared');
 
 
 setInterval(function() {
-    axios.get(resultsurl).then(function(json){
+    axios.get(resultsurl)
+    .then(function(json){
         yesbar.style.width = json.data.votes_in_favour_percent + "%";
         nobar.style.width = json.data.votes_against_percent + "%";
         yesvalue.innerText = json.data.votes_in_favour_percent + "%";
         novalue.innerText = json.data.votes_against_percent + "%";
         timestamp.innerText = 'at ' + json.data.timestamp;
         progress.innerText = json.data.constituenciesDeclared;
+    })
+    .catch(function (err) {
+        console.log(err)
     })
 },1000)
