@@ -1,0 +1,10 @@
+#!/bin/bash
+
+while true
+do
+
+gulp data
+echo "waiting for 5 mins"
+sleep 300
+
+done
