@@ -11,8 +11,7 @@ var timestamp = document.querySelector('.gv-timestamp');
 var progress = document.querySelector('.gv-declared');
 
 
-
-setInterval(function() {
+function fetchdata() {
     axios.get(resultsurl)
     .then(function(json){
         yesbar.style.width = json.data.votes_in_favour_percent + "%";
@@ -25,4 +24,11 @@ setInterval(function() {
     .catch(function (err) {
         console.log(err)
     })
+}
+
+
+setInterval(function() {
+    fetchdata();
 },150000)
+
+fetchdata();
