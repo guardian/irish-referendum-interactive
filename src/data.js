@@ -22,24 +22,24 @@ var url = 'http://www.referendum.ie/results-feed/'
 
 var nationalresult;
 
-var timestamp = new Date().toLocaleTimeString([],{timeZone: 'Europe/Dublin', hour: '2-digit', minute: '2-digit'})
+var timestamp = new Date().toLocaleTimeString([], { timeZone: 'Europe/Dublin', hour: '2-digit', minute: '2-digit' })
 
 
-export default async function data() {
+export async function data() {
 
     var resultxml = (await (axios.get(url))).data;
     var results = xmlparse.parse(resultxml);
-   nationalresult = results.Results.channel.national_result;
-   if (results.Results.channel.item) {
-    countOfDeclared = results.Results.channel.item.filter(c => {
-        return c.perc_yes !== '0%' && c.perc_yes.length > 0;       
-    });
-    nationalresult.constituenciesDeclared = countOfDeclared.length;
-   } else nationalresult.constituenciesDeclared = 0;
+    nationalresult = results.Results.channel.national_result;
+    if (results.Results.channel.item) {
+        countOfDeclared = results.Results.channel.item.filter(c => {
+            return c.perc_yes !== '0%' && c.perc_yes.length > 0;
+        });
+        nationalresult.constituenciesDeclared = countOfDeclared.length;
+    } else nationalresult.constituenciesDeclared = 0;
     nationalresult.timestamp = timestamp;
     s3params.Body = JSON.stringify(nationalresult);
     console.log(nationalresult);
-    s3.putObject(s3params, function(err){
+    s3.putObject(s3params, function (err) {
         if (err) console.log(err);
     })
     return nationalresult;

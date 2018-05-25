@@ -4,7 +4,7 @@ import xmlparse from 'pixl-xml'
 import fs from 'fs'
 import mustache from 'mustache'
 import mkdirp from 'mkdirp'
-import data from './data.js'
+import {data} from './data.js'
 
 mkdirp.sync('./.build/static')
 

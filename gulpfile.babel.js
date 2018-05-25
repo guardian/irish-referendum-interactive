@@ -261,6 +261,7 @@ gulp.task('default', ['local'], () => {
 
 gulp.task('data',() =>{
     let data = requireUncached('./src/data.js').data;
+    console.log(data);
     Promise.resolve(data()).then(console.log('data job finished'))
 })
 
