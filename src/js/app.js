@@ -25,4 +25,4 @@ setInterval(function() {
     .catch(function (err) {
         console.log(err)
     })
-},1000)
+},150000)

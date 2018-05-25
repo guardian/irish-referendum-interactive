@@ -5,10 +5,6 @@ import aws from 'aws-sdk'
 import config from './../config.json'
 
 var s3 = new aws.S3();
-
-console.log(config);
-console.log('atoms/' + config.path + '/static/results.json')
-
 var s3params = {
     Bucket: "gdn-cdn",
     Key: 'atoms/' + config.path + '/static/results.json',
@@ -24,13 +20,12 @@ var s3params = {
 // LIVE 2
 var url = 'http://www.referendum.ie/results-feed/'
 
-
 var nationalresult;
 
 var timestamp = new Date().toLocaleTimeString([],{timeZone: 'Europe/Dublin', hour: '2-digit', minute: '2-digit'})
 
 
-export async function data() {
+export default async function data() {
 
     var resultxml = (await (axios.get(url))).data;
     var results = xmlparse.parse(resultxml);
@@ -47,4 +42,5 @@ export async function data() {
     s3.putObject(s3params, function(err){
         if (err) console.log(err);
     })
+    return nationalresult;
 };
