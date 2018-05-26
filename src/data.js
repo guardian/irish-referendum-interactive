@@ -31,7 +31,7 @@ export async function data() {
     var results = xmlparse.parse(resultxml);
     nationalresult = results.Results.channel.national_result;
     if (results.Results.channel.item) {
-        countOfDeclared = results.Results.channel.item.filter(c => {
+        var countOfDeclared = results.Results.channel.item.filter(c => {
             return c.perc_yes !== '0%' && c.perc_yes.length > 0;
         });
         nationalresult.constituenciesDeclared = countOfDeclared.length;
